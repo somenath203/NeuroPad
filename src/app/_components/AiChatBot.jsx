@@ -5,6 +5,9 @@ import { useUser } from '@clerk/nextjs';
 import { Bot, BotIcon, Send, Trash, XCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -22,9 +25,13 @@ const RenderChatMessages = ({ message: { role, content } }) => {
 
             { isMessageFromAI && <BotIcon className='mr-2 shrink-0' /> }
 
-            <p className={cn('whitespace-pre-line rounded-md border px-3 py-2', isMessageFromAI ? 'bg-background' : 'bg-primary text-primary-foreground')}>
-                {content}
-            </p>
+            <div className={cn('whitespace-pre-line rounded-md border px-3 py-2', isMessageFromAI ? 'bg-background' : 'bg-primary text-primary-foreground')}>
+                
+                <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                    {content}
+                </Markdown>
+
+            </div>
 
             {!isMessageFromAI && user?.imageUrl && (
                 <Image 
@@ -144,7 +151,7 @@ const AiChatBot = ({ open, onClose }) => {
                     ref={inputUserMessageRef}
                 />
 
-                <Button type='submit' disabled={isLoading}>
+                <Button type='submit' disabled={isLoading || !input}>
                     <Send />
                 </Button>
 
