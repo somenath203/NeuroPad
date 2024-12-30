@@ -42,7 +42,7 @@ export async function POST(req) {
         });
 
 
-        const pineconeVectorDbResPromptMessageString = `You are an intelligent notes taking app. You answer the user's question based on their existing notes. The relevant notes for the query are: ${relevantNotesFromMongoDBBasedOnTheMongodbIdComingFromPinecone.map((note) => `title: ${note?.title}\n\n content:\n${note?.content}`).join('\n\n')}`.trim();
+        const pineconeVectorDbResPromptMessageString = `The relevant notes for the query are: ${relevantNotesFromMongoDBBasedOnTheMongodbIdComingFromPinecone.map((note) => `title: ${note?.title}\n\n content:\n${note?.content}`).join('\n\n')}`.trim();
 
 
         const messageFormatForGoogleGeminiAPI = [
@@ -52,7 +52,7 @@ export async function POST(req) {
             },
             {
                 role: "system",
-                content: pineconeVectorDbResPromptMessageString, // Ensure this is properly formatted
+                content: pineconeVectorDbResPromptMessageString, 
             },
             ...lastSixMessagesBetweenUserAndBot.map((msg) => ({
                 role: msg.role === "assistant" ? "assistant" : "user",
