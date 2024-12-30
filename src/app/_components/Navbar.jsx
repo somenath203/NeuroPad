@@ -1,23 +1,19 @@
 'use client';
 
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "next-themes";
-import { useUser, useClerk } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { dark } from "@clerk/themes";
  
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuLabel,
-  DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/dropdown-menu"
 import AddNoteDialogBox from "./AddNoteDialogBox";
 import AiChatBoxButton from "./AiChatBoxButton";
 
@@ -25,27 +21,7 @@ import AiChatBoxButton from "./AiChatBoxButton";
 const Navbar = () => {
 
 
-  const { user } = useUser();
-
-  const { signOut } = useClerk();
-
   const { setTheme, theme } = useTheme();
-
-
-  const router = useRouter();
-
-
-  const signOutFunc = () => {
-
-    signOut().then(() => {
-
-      toast.success('you have been logged out successfully');
-
-      router.push('/sign-in');
-
-    });
-
-  }
 
 
   return (
@@ -118,39 +94,16 @@ const Navbar = () => {
 
           <AiChatBoxButton />
 
+          
+          <UserButton 
+            key={theme}
+            appearance={{ 
+              elements: { avatarBox: { width: '2.5rem', height: '2.5rem' } },
+              baseTheme: (theme === 'dark' ? dark : undefined)
+            }}
+          />
 
-          <DropdownMenu>
-
-            <DropdownMenuTrigger asChild>
-
-              <Avatar className='cursor-pointer'>
-
-                <AvatarImage src={user?.imageUrl} />
-
-                <AvatarFallback>{user?.fullName}</AvatarFallback>
-
-              </Avatar>
-
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent>
-
-              <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
-
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem 
-                className='cursor-pointer' 
-                onClick={signOutFunc}
-              >
-                Logout
-              </DropdownMenuItem>
-
-            </DropdownMenuContent>
-
-          </DropdownMenu>
-
-
+        
         </div>
 
       </div>
