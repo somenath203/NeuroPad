@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "next-themes";
-import { useUser, SignOutButton } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
  
@@ -27,6 +27,8 @@ const Navbar = () => {
 
   const { user } = useUser();
 
+  const { signOut } = useClerk();
+
   const { setTheme, theme } = useTheme();
 
 
@@ -35,9 +37,13 @@ const Navbar = () => {
 
   const signOutFunc = () => {
 
-    router.push('/');
+    signOut().then(() => {
 
-    toast.success('you have been logout successfully');
+      toast.success('you have been logged out successfully');
+
+      router.push('/sign-in');
+
+    });
 
   }
 
@@ -133,12 +139,11 @@ const Navbar = () => {
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem>
-                
-                <SignOutButton redirectUrl="/" onClick={signOutFunc}>
-                  Logout
-                </SignOutButton>
-
+              <DropdownMenuItem 
+                className='cursor-pointer' 
+                onClick={signOutFunc}
+              >
+                Logout
               </DropdownMenuItem>
 
             </DropdownMenuContent>
