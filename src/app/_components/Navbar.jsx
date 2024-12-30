@@ -1,19 +1,23 @@
 'use client';
 
-import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "next-themes";
-import { dark } from "@clerk/themes";
+import { useUser, SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
  
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  DropdownMenuLabel,
+  DropdownMenuSeparator
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import AddNoteDialogBox from "./AddNoteDialogBox";
 import AiChatBoxButton from "./AiChatBoxButton";
 
@@ -21,7 +25,21 @@ import AiChatBoxButton from "./AiChatBoxButton";
 const Navbar = () => {
 
 
+  const { user } = useUser();
+
   const { setTheme, theme } = useTheme();
+
+
+  const router = useRouter();
+
+
+  const signOutFunc = () => {
+
+    router.push('/sign-in');
+
+    toast.success('you have been logout successfully');
+
+  }
 
 
   return (
@@ -94,16 +112,40 @@ const Navbar = () => {
 
           <AiChatBoxButton />
 
-          
-          <UserButton 
-            key={theme}
-            appearance={{ 
-              elements: { avatarBox: { width: '2.5rem', height: '2.5rem' } },
-              baseTheme: (theme === 'dark' ? dark : undefined)
-            }}
-          />
 
-        
+          <DropdownMenu>
+
+            <DropdownMenuTrigger asChild>
+
+              <Avatar className='cursor-pointer'>
+
+                <AvatarImage src={user?.imageUrl} />
+
+                <AvatarFallback>{user?.fullName}</AvatarFallback>
+
+              </Avatar>
+
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent>
+
+              <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem>
+                
+                <SignOutButton redirectUrl="/sign-in" onClick={signOutFunc}>
+                  Logout
+                </SignOutButton>
+
+              </DropdownMenuItem>
+
+            </DropdownMenuContent>
+
+          </DropdownMenu>
+
+
         </div>
 
       </div>
