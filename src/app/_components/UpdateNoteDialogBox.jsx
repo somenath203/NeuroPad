@@ -89,7 +89,7 @@ const UpdateNoteDialogBox = ({ title, content, idOfTheNoteToBeUpdated, disableEd
 
     <Button 
         disabled={disableEditButtonOnNoteDelete}
-        className='flex items-center justify-center gap-2' 
+        className='flex items-center justify-center gap-2 w-full' 
         onClick={() => setOpenDialog(true)}
     >
 

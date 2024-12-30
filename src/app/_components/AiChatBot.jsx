@@ -76,9 +76,6 @@ const AiChatBot = ({ open, onClose }) => {
 
   const isLastMessageSentByUser = messages[messages.length - 1]?.role === 'user';
 
-  console.log(messages);
-  
-
 
   return (
     <div className={cn('bottom-0 right-0 xl:right-36 z-10 w-full max-w-[500px] p-1', open ? 'fixed' : 'hidden')}>

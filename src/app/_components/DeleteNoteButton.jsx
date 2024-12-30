@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 const DeleteNoteButton = ({ isLoading, deleteNoteDataFunc }) => {
 
   return (
-    isLoading ? <Button variant='destructive' disabled={isLoading}> 
+    isLoading ? <Button variant='destructive' disabled={isLoading} className='w-full'> 
 
       <Loader2 className='transition-all animate-spin' />
 
     </Button> : <Button 
-      className='flex items-center justify-center gap-2' 
+      className='flex items-center justify-center gap-2 w-full' 
       variant='destructive'
       disabled={isLoading}
       onClick={deleteNoteDataFunc}

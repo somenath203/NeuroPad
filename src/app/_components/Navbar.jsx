@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "next-themes";
-import { dark } from "@clerk/themes";
  
 import { Button } from "@/components/ui/button"
 import {
@@ -27,9 +26,9 @@ const Navbar = () => {
   return (
     <div className="p-4 shadow dark:shadow-slate-700">
 
-      <div className="max-w-7xl m-auto flex flex-wrap gap-3 items-center justify-between">
+      <div className="max-w-7xl m-auto flex flex-col lg:flex-row flex-wrap gap-3 items-center justify-between">
 
-        <Link href='/notes' className="flex items-center gap-1">
+        <Link href='/notes' className="flex items-center justify-center gap-1">
 
           <Image 
             src='/logo.png' 
@@ -43,7 +42,7 @@ const Navbar = () => {
         </Link>
         
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-4">
 
 
           <DropdownMenu>
@@ -89,17 +88,19 @@ const Navbar = () => {
           </DropdownMenu>
 
 
-          <AddNoteDialogBox />
+          <div className="flex items-center justify-center gap-3">
 
+            <AddNoteDialogBox />
 
-          <AiChatBoxButton />
+            <AiChatBoxButton />
+
+          </div>
 
           
           <UserButton 
             key={theme}
             appearance={{ 
               elements: { avatarBox: { width: '2.5rem', height: '2.5rem' }},
-              baseTheme: theme === 'dark' ? dark : undefined
             }}
           />
 

@@ -44,12 +44,14 @@ const Page = async () => {
 
         <div className="flex items-center justify-center">
 
-          <Card className='border border-red-600 bg-red-50 dark:bg-red-950 border-l-4 border-l-red-900 w-2/5'>
+          <Card className='border border-red-600 bg-red-50 dark:bg-red-950 border-l-4 border-l-red-900 w-full lg:w-2/5'>
 
             <CardHeader>
+
               <CardTitle>
                 <span className="font-bold">No Cards Found</span>
               </CardTitle>
+              
             </CardHeader>
 
             <CardContent>

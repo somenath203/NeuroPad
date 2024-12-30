@@ -76,7 +76,7 @@ const Note = ({ note }) => {
             <p>{note?.content}</p>
         </CardContent>
 
-        <CardFooter className='flex items-center justify-between mt-4'>
+        <CardFooter className='mt-3 lg:mt-4 flex flex-col gap-1 lg:flex-0 lg:flex-row w-full'>
 
           <TooltipProvider>
 
@@ -84,7 +84,7 @@ const Note = ({ note }) => {
 
               <TooltipTrigger asChild>
 
-                <span>
+                <span className="w-full">
 
                   <UpdateNoteDialogBox 
                     title={note?.title} 
@@ -112,10 +112,11 @@ const Note = ({ note }) => {
 
               <TooltipTrigger asChild>
 
-                <span>
+                <span className="w-full">
 
                   <Button
                     disabled={isLoading}
+                    className='w-full'
                     variant='ghost'
                     onClick={() => {
 
@@ -148,7 +149,7 @@ const Note = ({ note }) => {
 
               <TooltipTrigger asChild>
 
-                <span>
+                <span className="w-full">
 
                   <DeleteNoteButton 
                     isLoading={isLoading} 

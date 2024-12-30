@@ -16,7 +16,7 @@ const Page = () => {
 
       </div>
 
-      <p className="text-center max-w-prose text-lg">
+      <p className="text-center max-w-prose text-lg px-2">
         An intelligent note-taking application with AI integration, powered by Google Gemini and Pinecone Vector Database.
       </p>
 
