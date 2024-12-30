@@ -1,11 +1,9 @@
 'use client';
 
-import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { Moon, Sun, Monitor } from "lucide-react"
+import { Moon, Sun, Monitor, LogOut } from "lucide-react"
 import { useTheme } from "next-themes";
-import { dark } from "@clerk/themes";
  
 import { Button } from "@/components/ui/button"
 import {
@@ -16,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import AddNoteDialogBox from "./AddNoteDialogBox";
 import AiChatBoxButton from "./AiChatBoxButton";
+import { SignOutButton } from "@clerk/nextjs";
 
 
 const Navbar = () => {
@@ -94,14 +93,10 @@ const Navbar = () => {
 
           <AiChatBoxButton />
 
-          
-          <UserButton 
-            key={theme}
-            appearance={{ 
-              elements: { avatarBox: { width: '2.5rem', height: '2.5rem' } },
-              baseTheme: (theme === 'dark' ? dark : undefined)
-            }}
-          />
+
+          <SignOutButton className='cursor-pointer' signOutOptions={{ redirectUrl: '/sign-in' }}>
+            <LogOut />
+          </SignOutButton>
 
         
         </div>

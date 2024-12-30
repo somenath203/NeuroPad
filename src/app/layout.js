@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider afterSignOutUrl="/sign-in">
+    <ClerkProvider>
 
       <html lang="en" suppressHydrationWarning>
         
