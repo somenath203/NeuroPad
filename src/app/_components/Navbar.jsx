@@ -35,7 +35,7 @@ const Navbar = () => {
 
   const signOutFunc = () => {
 
-    router.push('/sign-in');
+    router.push('/');
 
     toast.success('you have been logout successfully');
 
@@ -135,7 +135,7 @@ const Navbar = () => {
 
               <DropdownMenuItem>
                 
-                <SignOutButton redirectUrl="/sign-in" onClick={signOutFunc}>
+                <SignOutButton redirectUrl="/" onClick={signOutFunc}>
                   Logout
                 </SignOutButton>
 
