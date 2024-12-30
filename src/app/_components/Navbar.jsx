@@ -15,12 +15,21 @@ import {
 import AddNoteDialogBox from "./AddNoteDialogBox";
 import AiChatBoxButton from "./AiChatBoxButton";
 import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 
 const Navbar = () => {
 
 
   const { setTheme, theme } = useTheme();
+
+  const router = useRouter();
+
+  const onRedirectUserAfterLogout = () => {
+
+    router.push('/');
+    
+  }
 
 
   return (
@@ -94,7 +103,7 @@ const Navbar = () => {
           <AiChatBoxButton />
 
 
-          <SignOutButton className='cursor-pointer' signOutOptions={{ redirectUrl: '/sign-in' }}>
+          <SignOutButton className='cursor-pointer' redirectUrl="/" onClick={onRedirectUserAfterLogout}>
             <LogOut />
           </SignOutButton>
 
