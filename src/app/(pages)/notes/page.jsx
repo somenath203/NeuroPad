@@ -49,13 +49,13 @@ const Page = async () => {
             <CardHeader>
 
               <CardTitle>
-                <span className="font-bold">No Cards Found</span>
+                <span className="font-bold">No Notes Found</span>
               </CardTitle>
               
             </CardHeader>
 
             <CardContent>
-              <p className="font-semibold">No card exists. Please create one.</p>
+              <p className="font-semibold">No note exists. Please create one.</p>
             </CardContent>
 
           </Card>
