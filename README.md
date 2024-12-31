@@ -6,7 +6,7 @@
 
 🔗 [Watch on YouTube](https://www.youtube.com/watch?v=ZSntq5WxE7A) 
 
-
+## 👉 Introduction
 NeuroPad is not just another note-taking app. It combines a powerful note organizer with an intelligent chatbot that knows everything about your notes. Whether you're organizing your thoughts, improving your content, or retrieving specific information, NeuroPad has you covered. 🌟
 
 ---
