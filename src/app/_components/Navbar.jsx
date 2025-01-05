@@ -98,7 +98,6 @@ const Navbar = () => {
 
           
           <UserButton 
-            key={theme}
             appearance={{ 
               elements: { avatarBox: { width: '2.5rem', height: '2.5rem' }},
             }}
